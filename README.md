@@ -15,4 +15,4 @@ Inspirobot is a web application designed to provide users with inspirational quo
 * Tailwind CSS(utility CSS framework)
 * HTML
 * HTMX ofr interactive elements
-* Zen Quotes API (external quote source)
+* Zen Quotes API (external quote source) - Paid source
