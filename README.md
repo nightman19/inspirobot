@@ -14,5 +14,5 @@ Inspirobot is a web application designed to provide users with inspirational quo
 * Django(Python web framework)
 * Tailwind CSS(utility CSS framework)
 * HTML
-* HTMX ofr interactive elements
+* HTMX for interactive elements
 * Zen Quotes API (external quote source) - Paid source
