@@ -38,7 +38,9 @@ This application uses the Zen Quotes API, which offers:
 * Use batch API calls when possible for better efficiency
 
 ## License
-[Add your license information here]
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+Copyright (c) 2024 Nuru Umar Mohammed
 
 ## Contributing
-[Add contribution guidelines here]
+Contributions are welcome! Please feel free to submit a Pull Request.
