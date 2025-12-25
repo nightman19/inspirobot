@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="container mb-5 text-3xl font-bold text-gray-900 dark:text-white">
+    {% if quote %}
+        <h1>Inspirational Quote</h1>
+        <p class="font-sans text-sm font-semibold">"{{ quote.q }}" - {{ quote.a }}</p>
+    {% else %}
+        <p>{{ error_message }}</p>
+    {% endif %}
+</div>
+
+
+{% endblock content %}
