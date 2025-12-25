@@ -1,0 +1,16 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <title>inspirobot</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		{% tailwind_css %}
+	</head>
+	
+	<body class= "dark:bg-gray-900 fixed top-0 left-0 right-0 bottom-0">
+		{% block content %}
+		{% endblock content %}
+	</body>
+</html>
