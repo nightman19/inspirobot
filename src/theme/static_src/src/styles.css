@@ -1,3 +1,44 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer utilities {
+  .scrollbar-hide {
+    /* Firefox */
+    scrollbar-width: none;
+
+    /* IE and Edge */
+    -ms-overflow-style: none;
+  }
+
+  /* Chrome, Safari and Opera */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Fade + slide animation for HTMX swaps */
+#quote-card.htmx-swapping {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+#quote-card.htmx-settling {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+#quote-card {
+  transition: opacity 250ms ease, transform 250ms ease;
+}
+
+htmx-swapping {
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+htmx-settling {
+  opacity: 1;
+}

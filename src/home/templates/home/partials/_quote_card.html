@@ -1,0 +1,62 @@
+<div id="quote-card" class="mt-4 px-4">
+    <div
+        class="relative flex min-h-[420px] w-full flex-col justify-between overflow-hidden rounded-3xl bg-white dark:bg-surface-dark shadow-lg shadow-slate-200/50 dark:shadow-black/20">
+        <!-- Decorative Background Image with Overlay -->
+        <div class="absolute inset-0 z-0 opacity-40 mix-blend-overlay">
+            <div class="h-full w-full bg-cover bg-center"
+                data-alt="Abstract dark moody fog with soft light gradients"
+                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBDFNGWKSLc2w9AllaHJriZQq11LFIA0ZDckS3qEdKygXGUVlQzEJW5RZb0IMYZ6J1KX2nCdG8CJ795sqQOoh2DRIrMM7HgO6oZyTPxpQOk-VQZ23CDrkkfehR9uY_dCK-PHn2PsjGGr32RM0Icep7-dhUmQG4FHY9DL86u5W6njOUOrBNbIgLx4BeTHRLVrqre0lgdttpXYA8FuH6JrzfmcLmVU9f8mp5RBofKRP76JHQLQoEUSuxsazp5ALzY_WoMETTywDEvTTWG');">
+            </div>
+        </div>
+        <!-- Gradient Overlay for readability -->
+        <div
+            class="absolute inset-0 z-0 bg-gradient-to-b from-transparent via-white/10 to-white/80 dark:via-surface-dark/40 dark:to-surface-dark">
+        </div>
+        <!-- Content -->
+        <div class="relative z-10 flex h-full flex-col p-6 sm:p-8">
+            <!-- Top Action Row (Save/Share) -->
+            <div class="flex justify-end gap-3">
+                <button
+                    class="group flex h-10 w-10 items-center justify-center rounded-full bg-white/20 backdrop-blur-md hover:bg-white/30 dark:bg-black/20 dark:hover:bg-black/30 transition-all">
+                    <span
+                        class="material-symbols-outlined text-slate-700 dark:text-slate-200 group-hover:scale-110 transition-transform text-[20px]">bookmark</span>
+                </button>
+                <button
+                    class="group flex h-10 w-10 items-center justify-center rounded-full bg-white/20 backdrop-blur-md hover:bg-white/30 dark:bg-black/20 dark:hover:bg-black/30 transition-all">
+                    <span
+                        class="material-symbols-outlined text-slate-700 dark:text-slate-200 group-hover:scale-110 transition-transform text-[20px]">ios_share</span>
+                </button>
+            </div>
+
+
+
+            <!-- Quote Text -->
+            <div id="quote-card" class="min-h-[260px] flex items-center">
+                {% include "home/partials/_quotes.html" %}
+            </div>
+            
+            
+           
+
+            <!-- Bottom Interaction Bar -->
+            <div class="mt-auto pt-6 border-t border-slate-100 dark:border-slate-700/50">
+                <div class="flex items-center justify-between">
+                    <div
+                        class="flex items-center gap-1.5 rounded-full bg-slate-100 dark:bg-surface-input px-3 py-1.5">
+                        <span class="material-symbols-outlined text-primary text-[18px]">favorite</span>
+                        <span class="text-xs font-bold text-slate-600 dark:text-slate-300">1.2k</span>
+                    </div>
+                    <button
+                        hx-get="{% url 'inspire-me' %}"
+                        hx-target="#quote-card"
+                        hx-swap="innerHTML transition:true"
+                        hx-disabled-elt="this"
+                        class="flex items-center gap-2 rounded-lg bg-primary/10 px-4 py-2 text-sm font-semibold text-primary transition-colors hover:bg-primary/20">
+                        <span class="material-symbols-outlined text-[18px]">autorenew</span>
+                        Insire Me
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

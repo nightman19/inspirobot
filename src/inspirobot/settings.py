@@ -140,4 +140,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 TAILWIND_APP_NAME = 'theme'
 
-NPM_BIN_PATH = 'npm.cmd'
+# NPM_BIN_PATH = 'npm.cmd'
+
+NPM_BIN_PATH = '/home/numdev/.nvm/versions/node/v24.9.0/bin/npm'
