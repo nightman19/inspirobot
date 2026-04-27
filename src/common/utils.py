@@ -1,5 +1,11 @@
+import random
+from django.core.cache import cache
 import requests
-def fetch_quote(keyword=None, author=None, limit=1):
+
+CACHE_TIMEOUT = 60 * 10 # Cache quotes for 10 minutes to reduce API calls and improve performance
+
+
+def fetch_quote(keyword=None, author=None, limit=10, use_cache=True):
     """Fetches a random inspirational quote from the Zen Quotes API,
         optionally filtered by keyword and author.
 
@@ -13,48 +19,44 @@ def fetch_quote(keyword=None, author=None, limit=1):
             or None if no quotes are found matching the criteria.
     """
 
-    # Base URL for the Zen Quotes API with random parameter
-    base_url = "https://zenquotes.io/api/random?q={q}&a={a}&n={n}"
-    
-    # Validate limit (muast be between 1 and 100)
+
     if limit < 1 or limit > 100:
-        raise ValueError("Limit musat be between 1 and 100") 
+        raise ValueError("Limit must be between 1 and 100")
 
-    # Build the query string with optional parameters
-    params = {
-        "q": keyword if keyword else "",
-        "a" : author if author else "",
-        "n" : limit
-    }
-
-    # send a GET request to the API endpoint
-    try:
-        response = requests.get(base_url.format(**params))
-        response.raise_for_status() # Raise an exception for non-2xx status
-
-        # Parse JSON reponse
-        data = response.json()
-    except requests.exceptions.RequestException as e:
-        print(f"Error fectching quote: (e)")
-        return None
+    cache_key = f"quote:{keyword or ''}:{author or ''}:{limit}"
     
-    # Check if the quotes were found
+    if use_cache:
+        cached_data = cache.get(cache_key)
+        if cached_data:
+            return random.choice(cached_data)
+
+    try:
+        # Choose endpoint based on filters
+        if keyword or author:
+            url = "https://zenquotes.io/api/quotes"
+            params = {
+                "q": keyword or "",
+                "a": author or "",
+            }
+        else:
+            url = "https://zenquotes.io/api/random"
+            params = {}
+
+        response = requests.get(url, params=params, timeout=5)
+        response.raise_for_status()
+        data = response.json()
+
+    except requests.exceptions.RequestException:
+        return None
+
     if not data:
         return None
-    
-    # if multiple  quotes are fetched (due to limit > 1), return the first one
-    return data[0]
 
-    # Example usage with keyword filter
-    quote = fetch_quote(keyword="gratitude")
+    # Normalize → always store list
+    if isinstance(data, dict):
+        data = [data]
 
-    #Example usage with author filter
-    quote = fetch_quote(author="Maya Angelou")
+    if use_cache:
+        cache.set(cache_key, data, CACHE_TIMEOUT)
 
-    # Example usage with both filters(will return a random quote from matching results)
-    quote = fetch_quote(keyword="success", author="Napoleon Hill")
-
-    if quote:
-        print(f"{quote['q']} - {quote['a']}")
-    else:
-        print("No quote found matching your criteria.")
+    return random.choice(data)

@@ -22,7 +22,7 @@
 #quote-card.htmx-swapping {
   opacity: 0;
   transform: translateY(8px);
-  transition: opacity 200ms ease, transform 200ms ease;
+  transition: opacity 200ms ease-in-out, transform 200ms ease-in-out;
 }
 
 #quote-card.htmx-settling {
@@ -31,14 +31,44 @@
 }
 
 #quote-card {
-  transition: opacity 250ms ease, transform 250ms ease;
+  transition: opacity 250ms ease-in-out, transform 250ms ease-in-out;
 }
 
-htmx-swapping {
+.htmx-swapping {
   opacity: 0;
-  transition: opacity 300ms ease;
+  transition: opacity 300ms ease-in-out;
 }
 
-htmx-settling {
+.htmx-settling {
   opacity: 1;
+}
+
+.htmx-indicator {
+  display: none !important; /* Force hide by default */
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
+  pointer-events: none;
+}
+
+.htmx-request.htmx-indicator,
+.htmx-request .htmx-indicator {
+  display: flex !important; /* Force show when request is active */
+  opacity: 1 !important;
+}
+/* button.htmx-request {
+    opacity: 0.3;
+    pointer-events: none;
+    transition: opacity 0.2s ease-in-out;
+} */
+ 
+.htmx-request #quote-card {
+  filter: blur(2px);
+  transition: filter 200ms ease;
+}
+
+/* When a request is active, find the button that triggered it and fade it */
+button.htmx-request {
+    opacity: 0.3;
+    pointer-events: none;
+    transition: opacity 0.2s ease-in-out;
 }

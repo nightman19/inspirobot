@@ -43,8 +43,6 @@
 
 
     </section>
-    
-    
 {% endblock content %} {% endcomment %}
 
 {% block content %}
@@ -57,10 +55,24 @@
         
         
         <!-- Main Quote Card Area -->
-        <div id="quote-container">
-            {% include "home/partials/_quote_card.html" %}
+        <div class="relative">
+            <!-- GLOBAL Spinner -->
+            <div id="loading-spinner"
+                class="htmx-indicator absolute inset-0 flex items-center justify-center bg-white/60 dark:bg-black/40 backdrop-blur-sm z-50">
+
+                <div class="h-8 w-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+            </div>
+            <!-- <div id="loading-spinner"
+                class="htmx-indicator absolute inset-0 flex items-center justify-center bg-white dark:bg-surface-dark z-50 rounded-3xl">
+                <div class="h-8 w-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+            </div> -->
+
+            <!-- Swappable Quote -->
+            <div id="quote-container">
+                {% include "home/partials/_quote_card.html" %}
+            </div>
         </div>
-       
+            
         <!-- Secondary Content / Previous Quotes -->
         <div class="mt-8 px-4">
             <h3 class="mb-4 text-sm font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">Recent

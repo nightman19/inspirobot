@@ -35,15 +35,22 @@ def quote_partial(request):
     return render(
         request, 
         "home/partials/_quote_card.html",
-        {"quote": quote, "active_tag": keyword},
+        {
+            "quote": quote, 
+            "active_tag": keyword,
+            "error_message": None if quote else "No quote found"
+        },
     )
 
 
 def inspire(request):
-    quote = fetch_quote()
+    quote = fetch_quote(use_cache=False)  # Force fetch a new quote, bypassing cache
 
     return render(
         request,
         "home/partials/_quote_card.html",
-        {"quote": quote}
+        {
+            "quote": quote,
+            "error_message": None if quote else "No quote found",
+        },
     )

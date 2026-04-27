@@ -8,7 +8,19 @@
     <p class="font-medium text-slate-500 dark:text-slate-400 text-lg">— {{ quote.a }}</p>
   </div>
 {% elif error_message %}
-   <div class="mt-6 text-sm text-red-500">
-    {{ error_message }}
+  <div class="my-auto flex flex-col items-center justify-center text-center gap-4 py-10">
+    <!-- Icon -->
+    <div class="h-12 w-12 flex items-center rounded-full bg-primary/10">
+      <span class="material-symbols-outlined text-primary text-5xl">search_off</span>
+    </div>
+
+    <!-- Message -->
+    <p class="text-lg font-semibold text-slate-800 dark:text-white">
+      No quotes found
+    </p>
+    <p class="text-sm text-slate-500 dark:text-slate-400">
+      Try a different keyword or explore the tags below.
+    </p>
   </div>
+
 {% endif %}
