@@ -16,12 +16,11 @@ venv/
 *.py[cod]
 __pycache__/
 db.sqlite3
-/staticfiles/
+staticfiles/
 media/
 
 # Node / Tailwind
 node_modules/
-package-lock.json
 dist/
 npm-debug.log
 yarn-error.log

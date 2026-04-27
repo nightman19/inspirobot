@@ -43,6 +43,7 @@
 
                     <!-- Inspire Button -->
                     <button
+                        onclick="handleInspireClick(event)"
                         hx-get="{% url 'home:inspire-me' %}"
                         hx-target="#quote-container"
                         hx-swap="innerHTML transition:true"

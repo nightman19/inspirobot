@@ -71,6 +71,10 @@
             <div id="quote-container">
                 {% include "home/partials/_quote_card.html" %}
             </div>
+
+            <script id="quotes-data" type="application/json">
+                {{ quotes_json|safe }}
+            </script>
         </div>
             
         <!-- Secondary Content / Previous Quotes -->

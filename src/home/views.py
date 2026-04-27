@@ -30,15 +30,16 @@ def index(request):
 
 def quote_partial(request):
     keyword = request.GET.get("keyword")
-    quote = fetch_quote(keyword=keyword)
+    quotes = fetch_quote(keyword=keyword, limit=10)
 
     return render(
         request, 
         "home/partials/_quote_card.html",
         {
-            "quote": quote, 
+            "quote": quotes[0] if quotes else None, 
+            "quotes_json": quotes,
             "active_tag": keyword,
-            "error_message": None if quote else "No quote found"
+            "error_message": None if quotes else "No quote found"
         },
     )
 
