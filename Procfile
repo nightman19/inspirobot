@@ -1,0 +1,1 @@
+web: gunicorn src.inspirobot.wsgi:application
