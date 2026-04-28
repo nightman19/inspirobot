@@ -63,10 +63,8 @@
 					const quotes = getQuotes();
 
 					if (quotes.length > 0) {
-						// 🚫 Cancel request BEFORE it starts
 						e.preventDefault();
 
-						// 🎲 Shuffle locally
 						let index;
 						do {
 							index = Math.floor(Math.random() * quotes.length);
