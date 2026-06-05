@@ -17,6 +17,7 @@ INSTALLED_APPS = [
     'tailwind',
 
     'home',
+    'favorites',
     'theme',
 ]
 
@@ -40,7 +41,7 @@ ROOT_URLCONF = 'inspirobot.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,6 +76,9 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'

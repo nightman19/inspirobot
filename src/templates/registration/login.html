@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login • Inspirobot</title>
+    <link href="{% static 'css/dist/styles.css' %}" rel="stylesheet">
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center px-4">
+
+    <!-- App Container -->
+    <div class="w-full max-w-md">
+
+        <!-- Logo / Title -->
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-white tracking-tight">
+                Inspirobot
+            </h1>
+            <p class="text-slate-400 text-sm mt-2">
+                Save your favorite quotes and stay inspired
+            </p>
+        </div>
+
+        <!-- Card -->
+        <div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-2xl">
+
+            <h2 class="text-xl font-semibold text-white mb-6">
+                Welcome back
+            </h2>
+
+            <!-- Form -->
+            <form method="post" class="space-y-4">
+                {% csrf_token %}
+
+                <!-- Username -->
+                <div>
+                    <label class="block text-sm text-slate-300 mb-1">
+                        Username
+                    </label>
+                    <input
+                        type="text"
+                        name="username"
+                        id="id_username"
+                        required
+                        autocomplete="username"
+                        class="w-full rounded-xl border border-slate-700 bg-slate-800 px-4 py-3 text-white placeholder:text-slate-400 focus:border-primary focus:outline-none"
+                        placeholder="Enter your username"
+                    >
+                </div>
+
+                <!-- Password -->
+                <div>
+                    <label class="block text-sm text-slate-300 mb-1">
+                        Password
+                    </label>
+                    <input
+                        type="password"
+                        name="password"
+                        id="id_password"
+                        required
+                        autocomplete="current-password"
+                        class="w-full rounded-xl border border-slate-700 bg-slate-800 px-4 py-3 text-white placeholder:text-slate-400 focus:border-primary focus:outline-none"
+                        placeholder="Enter your password"
+                    >
+                </div>
+
+                <!-- Errors -->
+                {% if form.errors %}
+                    <div class="text-red-400 text-sm">
+                        Invalid username or password
+                    </div>
+                {% endif %}
+
+                <!-- Button -->
+                <button type="submit"
+                    class="w-full mt-4 bg-primary text-white py-2.5 rounded-xl font-semibold 
+                           hover:bg-primary/90 transition active:scale-95">
+                    Login
+                </button>
+            </form>
+
+            <!-- Divider -->
+            <div class="my-6 border-t border-white/10"></div>
+
+            <!-- Footer -->
+            <p class="text-center text-sm text-slate-400">
+                Don’t have an account?
+                <span class="text-primary font-medium cursor-not-allowed">
+                    Sign up coming soon
+                </span>
+            </p>
+
+        </div>
+
+        <!-- Back Link -->
+        <div class="text-center mt-6">
+            <a href="/" class="text-slate-500 text-sm hover:text-white transition">
+                ← Back to Home
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>

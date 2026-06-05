@@ -16,6 +16,7 @@ venv/
 *.pot
 *.py[cod]
 __pycache__/
+*.pyc
 db.sqlite3
 staticfiles/
 media/

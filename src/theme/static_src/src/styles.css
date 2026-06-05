@@ -72,3 +72,26 @@ button.htmx-request {
     pointer-events: none;
     transition: opacity 0.2s ease-in-out;
 }
+
+input {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    background-color: rgb(30 41 59);
+    color: rgb(255 255 255);
+    border: 1px solid rgb(51 65 85);
+}
+
+input:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px rgb(var(--color-primary));
+}
+
+.fill-icon {
+    font-variation-settings: 'FILL' 1;
+}
+
+.material-symbols-outlined {
+    transition: all 0.2s ease;
+}
