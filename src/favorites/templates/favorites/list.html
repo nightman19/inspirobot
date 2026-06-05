@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="flex-1 overflow-y-auto overflow-x-hidden scrollbar-hide pb-20">
+    <div class="max-w-4xl mx-auto px-4 py-8">
+
+        <div class="px-1 mb-6">
+            <h1 class="text-2xl font-bold">
+                Collections
+            </h1>
+
+            <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">
+                Your saved inspiration library
+            </p>
+        </div>
+
+        {% if favorites %}
+
+            <div class="space-y-4">
+
+                {% for favorite in favorites %}
+
+                    <div
+                        id="favorite-{{ favorite.id }}"
+                        class="rounded-3xl bg-surface-dark/80 border border-slate-800 p-5"
+                    >
+
+                        <blockquote class="text-lg font-medium leading-relaxed text-white">
+                            "{{ favorite.quote_text }}"
+                        </blockquote>
+                        <div class="h-1 w-10 rounded-full bg-primary mt-5"></div>
+                        <p class="mt-4 text-slate-400">
+                            — {{ favorite.author }}
+                        </p>
+
+                        <div class="flex items-center justify-between mt-5 pt-4 border-t border-slate-800">
+                            <!-- Share Button -->
+                             <button
+                                onclick="navigator.clipboard.writeText('{{ favorite.quote_text }} - {{ favorite.author }}')"
+                                class="flex items-center gap-1 text-slate-400 hover:text-primary"
+                             >
+                                <span class="material-symbols-outlined text-[18px]">
+                                    ios_share
+                                </span>
+                                <span class="text-sm">
+                                    Share
+                                </span>
+                             </button>
+
+                            <!-- Delete Button -->
+                            <button
+                                hx-delete="{% url 'favorites:delete_favorite' favorite.id %}"
+                                hx-target="#favorite-{{ favorite.id }}"
+                                hx-swap="outerHTML"
+                                class="flex items-center gap-1 text-slate-400 hover:text-red-400 translate"
+                            >
+                                <span class="material-symbols-outlined text-[18px]">
+                                    delete
+                                </span>
+                                <span class="text-sm">
+                                    Remove
+                                </span>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+
+            <div class="text-center py-20">
+
+                <p class="text-slate-500">
+                    No saved quotes yet.
+                </p>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

@@ -6,6 +6,7 @@ __pycache__/
 *.sqlite3
 
 # Virtual environment
+.env
 .venv/
 env/
 venv/
@@ -15,13 +16,13 @@ venv/
 *.pot
 *.py[cod]
 __pycache__/
+*.pyc
 db.sqlite3
-/staticfiles/
+staticfiles/
 media/
 
 # Node / Tailwind
 node_modules/
-package-lock.json
 dist/
 npm-debug.log
 yarn-error.log

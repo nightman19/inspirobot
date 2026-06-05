@@ -1,0 +1,20 @@
+<!-- Search Section -->
+<div class="px-4 py-4">
+    <form 
+        hx-get="{% url 'home:quote-partial' %}"
+        hx-target="#quote-container"
+        hx-swap="innerHTML"
+        hx-indicator="#loading-spinner"
+        class="relative flex items-center w-full"   
+    >
+        <span class="material-symbols-outlined absolute left-4 text-primary pointer-events-none">search</span>
+        <input
+            name="keyword"
+            autocomplete="off"
+            hx-trigger="keyup changed delay:400ms" 
+            class="h-14 w-full rounded-2xl border-none bg-white dark:bg-surface-input pl-12 pr-4 text-base font-medium placeholder-slate-400 dark:placeholder-slate-400 focus:ring-2 focus:ring-primary shadow-sm dark:shadow-none transition-all"
+            placeholder="How are you feeling today?" 
+            type="text" 
+        />
+    </form>
+</div> 

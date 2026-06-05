@@ -42,7 +42,28 @@ module.exports = {
         // '../../**/*.py'
     ],
     theme: {
-        extend: {},
+        darkMode: "class",
+        extend: {
+            colors: {
+                "primary": "#13b6ec",
+                "background-light": "#f6f8f8",
+                "background-dark": "#101d22",
+                "surface-dark": "#192d33",
+                "surface-input": "#233f48",
+            },
+            fontFamily: {
+                "display": ["Inter", "sans-serif"],
+                "body": ["Inter", "sans-serif"]
+            },
+            borderRadius: {
+                "DEFAULT": "0.375rem",
+                "md": "0.375rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "2xl": "1rem",
+                "full": "9999px"
+            },
+        },
     },
     plugins: [
         /**

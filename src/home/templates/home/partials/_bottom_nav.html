@@ -1,0 +1,43 @@
+<!-- Bottom Navigation -->
+<div class="fixed bottom-0 z-50 w-full max-w-md border-t border-slate-200 bg-white/80 dark:border-slate-800 dark:bg-background-dark/80 backdrop-blur-lg">
+    
+    <div class="flex h-16 items-center justify-around">
+
+        <!-- Home -->
+        <a href="{% url 'home:index' %}"
+           class="flex flex-col items-center gap-1 transition-colors
+           {% if request.resolver_match.url_name == 'index' %}
+               text-primary fill-icon
+           {% else %}
+               text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300
+           {% endif %}">
+            <span class="material-symbols-outlined filled">home</span>
+            <span class="text-[10px] font-medium">Home</span>
+        </a>
+
+        <!-- Collections -->
+        <a href="{% url 'favorites:list_favorites' %}"
+           class="flex flex-col items-center gap-1 transition-colors
+           {% if request.resolver_match.namespace == 'favorites' %}
+               text-primary fill-icon
+           {% else %}
+               text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300
+           {% endif %}">
+            <span class="material-symbols-outlined">grid_view</span>
+            <span class="text-[10px] font-medium">Collections</span>
+        </a>
+
+        <!-- Profile -->
+        <a href="#"
+           class="flex flex-col items-center gap-1 transition-colors
+           {% if request.resolver_match.url_name == 'profile' %}
+               text-primary fill-icon
+           {% else %}
+               text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300
+           {% endif %}">
+            <span class="material-symbols-outlined">person</span>
+            <span class="text-[10px] font-medium">Profile</span>
+        </a>
+
+    </div>
+</div>

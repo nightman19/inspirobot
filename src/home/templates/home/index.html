@@ -1,41 +1,121 @@
 {% extends 'base.html' %}
 
-{% block content %}
+{% comment %} {% block content %}
     <section class="space-y-4">
-        <!-- <div class="w-96 bg-white shadow rounded">
-            w-96
-        </div> 
-        <div class="w-32 white shadow rounded">
-            w-48
-        </div> -->
         <div class="py-8 px-4 mx-auto  text-center lg:py-16">
             <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Inspirobot + Mode = ❤️</h1>
             <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">Get Inspired Daily.</p>
-
-
             
-            <!-- <div class="w-full p-4 text-center">
+            
+            <div class="w-full p-4 text-center">
                 <h5 class="mb-5 text-3xl font-bold text-gray-900 dark:text-white">Select your keywords</h5>
-                <div class="items-center justify-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4 rtl:space-x-reverse">
-                <div class="flex flex-wrap gap-2 justify-center">  
-                    {% for tag in tags %}
-                    <a href="#" class="w-full sm:w-auto bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 text-white rounded-lg items-center justify-center px-4 py-2.5 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
-                        <div class="text-left rtl:text-right">
-                        <div class="-mt-1 font-sans text-sm font-semibold">{{ tag }}</div>
-                        </div>
-                    </a>
-                    {% endfor %}
+                <p class="mb-4 text-sm uppercase tracking-wide text-gray-400">
+                    Or try a suggestion
+                </p>
+                    <div class="flex flex-wrap gap-2 justify-center">
+                        {% for tag in all_tags %}
+                            <button>
+                                hx-get="/?keyword={{ tag }}"
+                                href="#quote-container"
+                                hx-swap="innerHTML"
+                                class="bg-gray-800 hover:bg-gray-700 text-white rounded-lg px-4 py-2 text-sm font-semibold">
+                                {{ tag }}
+                            </button>
+                        {% endfor %}
+                    </div>
                 </div>
-                </div>
-            </div> -->
+            </div>
             
         </div>
+       
         <div class="flex flex-col items-center justify-center">
             <div class="sm:w-3/4 md:w-2/3 lg:w-1/2 bg-grey p-6 rounded-lg shawdow-md">
-                <input type="text" class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Search">
+                <form method="get" action="." class="w-full max-w-md">
+                    <input
+                        type="text"
+                        name="keyword"
+                        class="w-full p-4 text-lg rounded-xl border border-gray-700 bg-gray-900 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        placeholder="Search by keyword (e.g. Life, Courage)"
+                    >
+                </form>
+        </div>
+        {% include "home/partials/_quote_card.html" %}
+
+
+    </section>
+{% endblock content %} {% endcomment %}
+
+{% block content %}
+
+    <!-- Scrollable Main Content -->
+    <div class="flex-1 overflow-y-auto overflow-x-hidden scrollbar-hide pb-20">
+        {% include "home/partials/_search.html" %}
+        
+        {% include "home/partials/_tags.html" %}
+        
+        
+        <!-- Main Quote Card Area -->
+        <div class="relative">
+            <!-- GLOBAL Spinner -->
+            <div id="loading-spinner"
+                class="htmx-indicator absolute inset-0 flex items-center justify-center bg-white/60 dark:bg-black/40 backdrop-blur-sm z-50">
+
+                <div class="h-8 w-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+            </div>
+            <!-- <div id="loading-spinner"
+                class="htmx-indicator absolute inset-0 flex items-center justify-center bg-white dark:bg-surface-dark z-50 rounded-3xl">
+                <div class="h-8 w-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+            </div> -->
+
+            <!-- Swappable Quote -->
+            <div id="quote-container">
+                {% include "home/partials/_quote_card.html" %}
+            </div>
+
+            <script id="quotes-data" type="application/json">
+                {{ quotes_json|safe }}
+            </script>
+        </div>
+            
+        <!-- Secondary Content / Previous Quotes -->
+        <div class="mt-8 px-4">
+            <h3 class="mb-4 text-sm font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">Recent
+                Gems</h3>
+            <div class="flex flex-col gap-3">
+                <!-- Small Card 1 -->
+                <div
+                    class="group flex items-center justify-between rounded-xl bg-white dark:bg-surface-input p-4 shadow-sm hover:shadow-md transition-shadow cursor-pointer border border-transparent hover:border-primary/20">
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-indigo-100 dark:bg-indigo-900/30 text-indigo-500 dark:text-indigo-300">
+                            <span class="material-symbols-outlined text-[20px]">light_mode</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <p class="line-clamp-1 text-sm font-medium text-slate-800 dark:text-slate-200">"Keep
+                                your face always toward the sunshine..."</p>
+                            <p class="text-xs text-slate-400 dark:text-slate-500">Walt Whitman • Hope</p>
+                        </div>
+                    </div>
+                    <span class="material-symbols-outlined text-slate-300 dark:text-slate-600">chevron_right</span>
+                </div>
+                <!-- Small Card 2 -->
+                <div
+                    class="group flex items-center justify-between rounded-xl bg-white dark:bg-surface-input p-4 shadow-sm hover:shadow-md transition-shadow cursor-pointer border border-transparent hover:border-primary/20">
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-500 dark:text-emerald-300">
+                            <span class="material-symbols-outlined text-[20px]">spa</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <p class="line-clamp-1 text-sm font-medium text-slate-800 dark:text-slate-200">"Peace
+                                comes from within. Do not seek it without."</p>
+                            <p class="text-xs text-slate-400 dark:text-slate-500">Buddha • Calm</p>
+                        </div>
+                    </div>
+                    <span class="material-symbols-outlined text-slate-300 dark:text-slate-600">chevron_right</span>
+                </div>
             </div>
         </div>
-    </section>
-    
-    
+    </div>
+
 {% endblock content %}

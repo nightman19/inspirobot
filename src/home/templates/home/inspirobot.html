@@ -6,7 +6,7 @@
 <div class="container mb-5 text-3xl font-bold text-gray-900 dark:text-white">
     {% if quote %}
         <h1>Inspirational Quote</h1>
-        <p class="font-sans text-sm font-semibold">"{{ quote.q }}" - {{ quote.a }}</p>
+        {% include "home/partials/_quotes.html" %}
     {% else %}
         <p>{{ error_message }}</p>
     {% endif %}

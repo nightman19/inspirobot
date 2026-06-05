@@ -1,22 +1,77 @@
 from django.shortcuts import render
 from common.utils import fetch_quote
 
+from favorites.models import Favorite
+
+# List of tags can be a module-level constant if you like
+all_tags = [
+    "Anxiety","Change","Choice","Confidence","Courage","Death","Dreams",
+    "Excellence","Failure","Fairness","Fear","Forgiveness","Freedom",
+    "Future","Happiness","Inspiration","Kindness","Leadership","Life",
+    "Living","Love","Pain","Past","Success","Time","Today","Truth","Work"
+]
 
 def index(request):
-    tags = ["Anxiety","Change","Choice","Confidence","Courage","Death","Dreams","Excellence","Failure","Fairness","Fear","Forgiveness","Freedom","Future","Happiness","Inspiration","Kindness","Leadership","Life","Living","Love","Pain","Past","Success","Time","Today","Truth","Work"]
-    context = {'tags': tags}
+    """
+    Main page view. If GET parameters include 'keyword' or 'author',
+    fetch a quote and pass it to the template.
+    """
+    popular_tags = all_tags[:8]
+    keyword = request.GET.get('keyword')
+    author = request.GET.get('author')
+    quote = fetch_quote(keyword=keyword, author=author)
+
+    is_favorited = False
+
+    if request.user.is_authenticated and quote:
+        is_favorited = Favorite.objects.filter(
+            user=request.user,
+            quote_text=quote.get('q'),
+            author=quote.get('a')
+        ).exists()
+
+    context = {
+        'tags': popular_tags,
+        'quote': quote,
+        'is_favorited': is_favorited,
+        'error_message': None if quote else ("No quote found matching your criteria" if keyword or author else None)
+    }
+
+    if request.user.is_authenticated:
+        favorites = Favorite.objects.filter(user=request.user)
+        context["user_favorites"] = {
+            (f.quote_text, f.author) for f in favorites
+        }
+    else:
+        context["user_favorites"] = set()
+
     return render(request, "home/index.html", context)
 
 
-def quotes_view(request):
-    keyword = request.GET.get('keyword') # Get keywprd from query string (if applicable)
-    author = request.GET.get('author') # Get author from query string (if applicable)
-    quote = fetch_quote(keyword=keyword, author=author)
+def quote_partial(request):
+    keyword = request.GET.get("keyword")
+    quotes = fetch_quote(keyword=keyword, limit=10)
 
-    if quote:
-        context = {'quote': quote}
-        return render(request, 'home/inspirobot.html', context)
-    else:
-        context = {'error_message': "No quote found matchin your criteria" }
-        return render(request, 'home/inspirobot.html', context)
-        
+    return render(
+        request, 
+        "home/partials/_quote_card.html",
+        {
+            "quote": quotes[0] if quotes else None, 
+            "quotes_json": quotes,
+            "active_tag": keyword,
+            "error_message": None if quotes else "No quote found"
+        },
+    )
+
+
+def inspire(request):
+    quote = fetch_quote(use_cache=False)  # Force fetch a new quote, bypassing cache
+
+    return render(
+        request,
+        "home/partials/_quote_card.html",
+        {
+            "quote": quote,
+            "error_message": None if quote else "No quote found",
+        },
+    )
