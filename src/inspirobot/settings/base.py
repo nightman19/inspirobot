@@ -18,6 +18,8 @@ INSTALLED_APPS = [
 
     'home',
     'favorites',
+    'accounts',
+    
     'theme',
 ]
 
