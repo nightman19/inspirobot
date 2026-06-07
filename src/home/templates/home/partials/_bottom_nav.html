@@ -28,9 +28,9 @@
         </a>
 
         <!-- Profile -->
-        <a href="#"
+        <a href="{% url 'accounts:profile' %}"
            class="flex flex-col items-center gap-1 transition-colors
-           {% if request.resolver_match.url_name == 'profile' %}
+           {% if 'profile' in request.path %}
                text-primary fill-icon
            {% else %}
                text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300

@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="flex-1 overflow-y-auto pb-20">
+
+    <div class="px-6 py-8">
+
+        <h1 class="text-3xl font-bold mb-8">
+            Profile
+        </h1>
+
+        <div class="bg-white dark:bg-surface-dark rounded-3xl p-6 shadow">
+
+            <div class="flex justify-center mb-6">
+                <span class="material-symbols-outlined text-6xl text-primary">
+                    account_circle
+                </span>
+            </div>
+
+            <div class="space-y-5">
+
+                <div>
+                    <p class="text-sm text-slate-500">
+                        Username
+                    </p>
+
+                    <p class="font-medium">
+                        {{ request.user.username }}
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-sm text-slate-500">
+                        Email
+                    </p>
+
+                    <p class="font-medium">
+                        {{ request.user.email|default:"Not provided" }}
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-sm text-slate-500">
+                        Saved Quotes
+                    </p>
+
+                    <p class="font-medium">
+                        {{ favorites_count }}
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-sm text-slate-500">
+                        Member Since
+                    </p>
+
+                    <p class="font-medium">
+                        {{ request.user.date_joined|date:"F Y" }}
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="mt-8">
+                <a
+                    href="{% url 'accounts:logout' %}"
+                    class="block w-full text-center rounded-xl bg-red-500/10 py-3 text-red-500 font-medium hover:bg-red-500/20 transition"
+                >
+                    Logout
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}
