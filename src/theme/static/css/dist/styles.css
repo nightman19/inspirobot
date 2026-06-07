@@ -2073,6 +2073,10 @@ input:focus {
 }
 
 @media (prefers-color-scheme: dark) {
+  .dark\:border {
+    border-width: 1px;
+  }
+
   .dark\:border-gray-700 {
     --tw-border-opacity: 1;
     border-color: rgb(55 65 81 / var(--tw-border-opacity));
@@ -2130,6 +2134,10 @@ input:focus {
   .dark\:bg-surface-input {
     --tw-bg-opacity: 1;
     background-color: rgb(35 63 72 / var(--tw-bg-opacity));
+  }
+
+  .dark\:bg-surface-dark\/80 {
+    background-color: rgb(25 45 51 / 0.8);
   }
 
   .dark\:via-surface-dark\/40 {
