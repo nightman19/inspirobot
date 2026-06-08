@@ -83,6 +83,28 @@
 				event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
 			});
 		</script>
+
+		<script>
+			async function shareQuote(text, author){
+				const shareText = `"${text}" -"${author}"`;
+
+				try{
+					if (navigator.share){
+						await navigator.share({
+							title: "Inspirobot",
+							text: shareText,
+							url: window.location.origin
+						});
+					}else {
+						await navigator.clipboard.writeText(shareText);
+
+						alert("Quote copied to clipboard");
+					}
+				}catch (error){
+					console.log("Share cancelled");
+				}
+			}
+		</script>
 	{% endblock scripts %}
 
 </html>

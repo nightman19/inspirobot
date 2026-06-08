@@ -48,7 +48,12 @@
                 {% endif %}
                 
                  <!-- Share -->
-                <button class="group flex h-10 w-10 items-center justify-center rounded-full bg-white/20 backdrop-blur-md hover:bg-white/30 dark:bg-black/20 dark:hover:bg-black/30 transition-all">
+                <button 
+                    onclick="shareQuote(
+                        '{{ quote.q|escapejs }}',
+                        '{{ quote.a|escapejs }}'
+                    )"
+                    class="group flex h-10 w-10 items-center justify-center rounded-full bg-white/20 backdrop-blur-md hover:bg-white/30 dark:bg-black/20 dark:hover:bg-black/30 transition-all">
                     <span class="material-symbols-outlined text-slate-700 dark:text-slate-200 group-hover:scale-110 transition-transform text-[20px]">ios_share</span>
                 </button>
             </div>
