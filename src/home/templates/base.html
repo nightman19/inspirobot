@@ -86,7 +86,7 @@
 
 		<script>
 			async function shareQuote(text, author){
-				const shareText = `"${text}" —— ${author}\n\nGet more inspiration at https://inspirobot.onrender.com`;
+				const shareText = `"${text}" — ${author}\n\nGet more inspiration at https://inspirobot.onrender.com`;
 				
 
 				try{
@@ -94,7 +94,6 @@
 						await navigator.share({
 							title: "Inspirobot",
 							text: shareText,
-							url: window.location.origin
 						});
 					}else {
 						await navigator.clipboard.writeText(shareText);
