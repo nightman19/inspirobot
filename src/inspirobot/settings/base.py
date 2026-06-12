@@ -19,6 +19,7 @@ INSTALLED_APPS = [
     'home',
     'favorites',
     'accounts',
+    'profiles',
     
     'theme',
 ]

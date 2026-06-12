@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="flex-1 overflow-y-auto pb-20">
+
+    <div class="px-6 py-8">
+
+        <!-- Avatar -->
+        <div class="flex flex-col items-center">
+
+            <div class="h-24 w-24 rounded-full bg-primary/10 flex items-center justify-center">
+                <span class="material-symbols-outlined text-primary text-5xl">
+                    person
+                </span>
+            </div>
+
+            <h1 class="mt-4 text-xl font-bold">
+                {{ request.user.username }}
+            </h1>
+
+            {% if request.user.email %}
+            <p class="text-slate-500 text-sm">
+                {{ request.user.email }}
+            </p>
+            {% endif %}
+
+        </div>
+
+        <!-- Stats -->
+        <div class="mt-8 rounded-3xl bg-white dark:bg-surface-dark p-5 shadow">
+
+            <div class="flex justify-between">
+
+                <div>
+                    <p class="text-2xl font-bold mt-2">
+                        {{ favorites_count }}
+                    </p>
+                    <p class="text-sm text-slate-400">
+                        Saved Quotes
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Actions -->
+        <div class="mt-8 space-y-3">
+
+            <a
+                href="{% url 'favorites:list_favorites' %}"
+                class="flex items-center justify-between rounded-2xl bg-white dark:bg-surface-dark p-4 shadow"
+            >
+                <span>My Collections</span>
+                <span class="material-symbols-outlined">
+                    chevron_right
+                </span>
+            </a>
+
+            <a
+                href="{% url 'accounts:logout' %}"
+                class="flex items-center justify-between rounded-2xl bg-white dark:bg-surface-dark p-4 shadow text-red-500"
+            >
+                <span>Logout</span>
+                <span class="material-symbols-outlined">
+                    logout
+                </span>
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
-from django.contrib.auth.decorators import login_required
 
 from .forms import UserRegisterForm
 
@@ -25,14 +24,3 @@ def logout_view(request):
     return redirect('home:index')
 
 
-@login_required
-def profile(request):
-    favorites_count = request.user.favorites.count()
-
-    return render(
-        request,
-        "accounts/profile.html",
-        {
-            "fovorites_count": favorites_count,
-        }
-    )
