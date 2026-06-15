@@ -59,6 +59,16 @@
             </a>
 
             <a
+                href="{% url 'settings:index' %}"
+                class="flex items-center justify-between rounded-2xl bg-white dark:bg-surface-dark p-4 shadow"
+            >
+                <span>Settings</span>
+                <span class="material-symbols-outlined">
+                    settings
+                </span>
+            </a>
+
+            <a
                 href="{% url 'accounts:logout' %}"
                 class="flex items-center justify-between rounded-2xl bg-white dark:bg-surface-dark p-4 shadow text-red-500"
             >
