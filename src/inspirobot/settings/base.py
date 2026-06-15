@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'favorites',
     'accounts',
     'profiles',
+    "settings",
     
     'theme',
 ]
