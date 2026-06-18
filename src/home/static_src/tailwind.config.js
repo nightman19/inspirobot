@@ -41,8 +41,11 @@ module.exports = {
          */
         // '../../**/*.py'
     ],
+    darkMode: "class",
     theme: {
-        extend: {},
+        extend: {
+            darkMode: "class",
+        },
     },
     plugins: [
         /**

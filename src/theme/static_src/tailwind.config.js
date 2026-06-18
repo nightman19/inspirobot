@@ -41,8 +41,8 @@ module.exports = {
          */
         // '../../**/*.py'
     ],
+    darkMode: "class",
     theme: {
-        darkMode: "class",
         extend: {
             colors: {
                 "primary": "#13b6ec",

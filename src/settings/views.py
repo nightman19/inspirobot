@@ -8,3 +8,13 @@ def settings_view(request):
         request,
         "settings/index.html",
     )
+
+@login_required
+def about_view(request):
+    return render(
+        request,
+        "settings/about.html",
+        {
+            "version": "1.0.0",
+        }
+    )

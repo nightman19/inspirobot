@@ -2,10 +2,17 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-    <title>inspirobot</title>
+    	<title>inspirobot</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<script>
+			if (localStorage.getItem("theme") === "dark") {
+				document.documentElement.classList.add("dark");
+			} else {
+				document.documentElement.classList.remove("dark");
+			}
+		</script>
 		<link rel="icon" href="{% static 'favicon.ico' %}">
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 		<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -15,16 +22,48 @@
 	</head>
 	
 	<body class= "bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased selection:bg-primary selection:text-white">
-		<div class="relative mx-auto flex h-screen w-full max-w-md flex-col overflow-hidden bg-background-light dark:bg-background-dark shadow-2xl">
+		<div class="relative mx-auto flex h-screen w-full max-w-md flex-col bg-background-light dark:bg-background-dark shadow-2xl">
+
 			{% include "home/partials/_topbar.html" %}
-			{% block content %}
-			{% endblock content %}
+
+			<main class="flex-1 overflow-y-auto">
+				{% block content %}
+				{% endblock %}
+			</main>
+
 			{% include "home/partials/_bottom_nav.html" %}
+
 		</div>
+
+
+		
 	</body>
 
 
 	{% block scripts %}
+
+		<script>
+			document.addEventListener("DOMContentLoaded", () => {
+				const toggle = document.getElementById("theme-toggle");
+
+				if (!toggle) return;
+
+				// Set switch state based on saved preference
+				toggle.checked = localStorage.getItem("theme") === "dark";
+
+				// Listen for changes
+				toggle.addEventListener("change", () => {
+					if (toggle.checked) {
+						document.documentElement.classList.add("dark");
+						localStorage.setItem("theme", "dark");
+					} else {
+						document.documentElement.classList.remove("dark");
+						localStorage.setItem("theme", "light");
+					}
+				});
+			});
+		</script>
+		
 		<script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js" integrity="sha384-/TgkGk7p307TH7EXJDuUlgG3Ce1UVolAOFopFekQkkXihi5u/6OCvVKyz1W+idaz" crossorigin="anonymous"></script>
 	
 		<script>
@@ -105,6 +144,7 @@
 				}
 			}
 		</script>
+
 	{% endblock scripts %}
 
 </html>

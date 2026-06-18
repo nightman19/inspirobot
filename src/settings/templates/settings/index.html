@@ -15,42 +15,63 @@
     </div>
 
     <!-- Appearance -->
-    <div class="rounded-3xl bg-surface-dark/80 p-5 mb-4">
-        <div class="flex items-center justify-between">
-            <div>
-                <h2 class="font-semibold text-lg">
-                    Appearance
-                </h2>
-                <p class="text-sm text-slate-400">
-                    Light or dark mode
-                </p>
+    <div class="flex items-center justify-between rounded-2xl bg-white dark:bg-surface-dark p-4 mb-4 shadow">
+
+        <div>
+            <h2 class="font-semibold text-lg">
+                Appearance
+            </h2>
+
+            <p class="text-sm text-slate-500 dark:text-slate-400">
+                Light or dark mode
+            </p>
+        </div>
+
+        <!-- Theme Toggle -->
+        <label class="relative inline-flex items-center cursor-pointer">
+
+            <input 
+                id="theme-toggle"
+                type="checkbox"
+                class="sr-only peer"
+            >
+
+            <div 
+                class="w-11 h-6 bg-slate-300 rounded-full 
+                    peer dark:bg-slate-700 
+                    peer-checked:bg-primary
+                    after:content-[''] after:absolute 
+                    after:top-[2px] after:left-[2px] 
+                    after:bg-white after:border 
+                    after:rounded-full after:h-5 after:w-5 
+                    after:transition-all 
+                    peer-checked:after:translate-x-full">
             </div>
 
-            <span class="material-symbols-outlined text-primary">
-                palette
-            </span>
-        </div>
+        </label>
+
     </div>
 
 
     <!-- About -->
-    <div class="rounded-3xl bg-surface-dark/80 p-5 mb-4">
-        <div class="flex items-center justify-between">
-            <div>
-                <h2 class="font-semibold text-lg">
-                    About
-                </h2>
-                <p class="text-sm text-slate-400">
-                    Inspirobot MVP v1.0
-                </p>
+    <a href="{% url 'settings:about' %}">    
+        <div class="rounded-2xl bg-white dark:bg-surface-dark p-4 mb-4 shadow">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h2 class="font-semibold text-lg">
+                        About
+                    </h2>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">
+                        Inspirobot MVP v1.0
+                    </p>
+                </div>
+
+                <span class="material-symbols-outlined">
+                    info
+                </span>
             </div>
-
-            <span class="material-symbols-outlined">
-                info
-            </span>
         </div>
-    </div>
-
+    </a>
 </div>
 
 {% endblock %}
