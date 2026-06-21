@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Login • Inspirobot</title>
     <link href="{% static 'css/dist/styles.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 </head>
 
 <body class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center px-4">
@@ -53,15 +54,26 @@
                     <label class="block text-sm text-slate-300 mb-1">
                         Password
                     </label>
-                    <input
-                        type="password"
-                        name="password"
-                        id="id_password"
-                        required
-                        autocomplete="current-password"
-                        class="w-full rounded-xl border border-slate-700 bg-slate-800 px-4 py-3 text-white placeholder:text-slate-400 focus:border-primary focus:outline-none"
-                        placeholder="Enter your password"
-                    >
+                    <div class="relative">
+                        <input
+                            type="password"
+                            name="password"
+                            id="id_password"
+                            required
+                            autocomplete="current-password"
+                            class="w-full rounded-xl border border-slate-700 bg-slate-800 px-4 py-3 pr-12 text-white placeholder:text-slate-400 focus:border-primary focus:outline-none"
+                            placeholder="Enter your password"
+                        >
+                        <button
+                            type="button"
+                            class="password-toggle absolute inset-y-0 right-0 flex items-center px-4 text-slate-400 hover:text-white"
+                            data-target="id_password"
+                            aria-label="Show password"
+                        >
+                            <span class="material-symbols-outlined text-xl toggle-icon">visibility_off</span>
+                        </button>
+                    </div>
+                    
                 </div>
 
                 <!-- Errors -->
@@ -103,5 +115,18 @@
 
     </div>
 
+    <script>
+        document.querySelectorAll('.password-toggle').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const input = document.getElementById(btn.dataset.target);
+                const icon = btn.querySelector('.toggle-icon');
+                const isHidden = input.type === 'password';
+
+                input.type = isHidden ? 'text' : 'password';
+                icon.textContent = isHidden ? 'visibility' : 'visibility_off';
+                btn.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
+            });
+        });
+    </script>
 </body>
 </html>

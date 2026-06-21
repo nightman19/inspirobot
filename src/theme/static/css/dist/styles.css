@@ -843,12 +843,21 @@ select {
   inset: 0px;
 }
 
+.inset-y-0 {
+  top: 0px;
+  bottom: 0px;
+}
+
 .bottom-0 {
   bottom: 0px;
 }
 
 .left-4 {
   left: 1rem;
+}
+
+.right-0 {
+  right: 0px;
 }
 
 .z-0 {
@@ -861,10 +870,6 @@ select {
 
 .z-50 {
   z-index: 50;
-}
-
-.m-8 {
-  margin: 2rem;
 }
 
 .mx-auto {
@@ -888,6 +893,10 @@ select {
 
 .mb-10 {
   margin-bottom: 2.5rem;
+}
+
+.mb-11 {
+  margin-bottom: 2.75rem;
 }
 
 .mb-2 {
@@ -940,10 +949,6 @@ select {
 
 .mt-auto {
   margin-top: auto;
-}
-
-.mb-11 {
-  margin-bottom: 2.75rem;
 }
 
 .line-clamp-1 {
@@ -1081,14 +1086,6 @@ select {
 
 .cursor-pointer {
   cursor: pointer;
-}
-
-.scroll-mb-11 {
-  scroll-margin-bottom: 2.75rem;
-}
-
-.scroll-mt-11 {
-  scroll-margin-top: 2.75rem;
 }
 
 .flex-col {
@@ -1431,14 +1428,14 @@ select {
   padding-bottom: 2.5rem;
 }
 
+.py-12 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
 .py-2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-}
-
-.py-2\.5 {
-  padding-top: 0.625rem;
-  padding-bottom: 0.625rem;
 }
 
 .py-20 {
@@ -1466,11 +1463,6 @@ select {
   padding-bottom: 2rem;
 }
 
-.py-12 {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-}
-
 .pb-2 {
   padding-bottom: 0.5rem;
 }
@@ -1485,6 +1477,10 @@ select {
 
 .pl-12 {
   padding-left: 3rem;
+}
+
+.pr-12 {
+  padding-right: 3rem;
 }
 
 .pr-4 {
