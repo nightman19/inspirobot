@@ -6,26 +6,33 @@
     <title>Login • Inspirobot</title>
     <link href="{% static 'css/dist/styles.css' %}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script>
+        if (localStorage.getItem("theme") === "dark") {
+            document.documentElement.classList.add("dark");
+        } else {
+            document.documentElement.classList.remove("dark");
+        }
+    </script>
 </head>
 
-<body class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center px-4">
+<body class="min-h-screen bg-background-light dark:bg-gradient-to-br dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 flex items-center justify-center px-4">
     <!-- App Container -->
     <div class="w-full max-w-xl">
 
         <!-- Logo / Title -->
         <div class="text-center mb-10">
-            <h1 class="text-4xl font-bold text-white tracking-tight">
+            <h1 class="text-5xl font-bold text-slate-900 dark:text-white tracking-tight">
                 Inspirobot
             </h1>
-            <p class="text-slate-400 text-base mt-2">
+            <p class="text-slate-500 dark:text-slate-400 text-lg mt-3">
                 Save your favorite quotes and stay inspired
             </p>
         </div>
 
         <!-- Card -->
-        <div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-2xl">
+        <div class="bg-white dark:bg-white/5 backdrop-blur-xl border border-slate-200 dark:border-white/10 rounded-2xl p-8 shadow-xl dark:shadow-2xl">
 
-            <h2 class="text-2xl font-semibold text-white mb-6">
+            <h2 class="text-3xl font-semibold text-slate-900 dark:text-white mb-8">
                 Welcome back
             </h2>
 
@@ -35,7 +42,7 @@
 
                 <!-- Username -->
                 <div>
-                    <label class="block text-sm text-slate-300 mb-1">
+                    <label class="block text-sm text-slate-600 dark:text-slate-300 mb-1">
                         Username
                     </label>
                     <input
@@ -44,14 +51,14 @@
                         id="id_username"
                         required
                         autocomplete="username"
-                        class="w-full rounded-xl border border-slate-700 bg-slate-800 px-4 py-3 text-white placeholder:text-slate-400 focus:border-primary focus:outline-none"
+                        class="w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-4 text-base text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-primary focus:outline-none"
                         placeholder="Enter your username"
                     >
                 </div>
 
                 <!-- Password -->
                 <div>
-                    <label class="block text-sm text-slate-300 mb-1">
+                    <label class="block text-sm text-slate-600 dark:text-slate-300 mb-1">
                         Password
                     </label>
                     <div class="relative">
@@ -61,12 +68,12 @@
                             id="id_password"
                             required
                             autocomplete="current-password"
-                            class="w-full rounded-xl border border-slate-700 bg-slate-800 px-4 py-3 pr-12 text-white placeholder:text-slate-400 focus:border-primary focus:outline-none"
+                            class="w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-4 pr-12 text-base text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-primary focus:outline-none"
                             placeholder="Enter your password"
                         >
                         <button
                             type="button"
-                            class="password-toggle absolute inset-y-0 right-0 flex items-center px-4 text-slate-400 hover:text-white"
+                            class="password-toggle absolute inset-y-0 right-0 flex items-center px-4 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
                             data-target="id_password"
                             aria-label="Show password"
                         >
@@ -78,24 +85,24 @@
 
                 <!-- Errors -->
                 {% if form.errors %}
-                    <div class="text-red-400 text-sm">
+                    <div class="text-red-500 dark:text-red-400 text-sm">
                         Invalid username or password
                     </div>
                 {% endif %}
 
                 <!-- Button -->
                 <button type="submit"
-                    class="w-full mt-4 bg-primary text-white py-4 rounded-xl font-semibold 
+                    class="w-full mt-4 bg-primary text-white py-4 rounded-xl text-lg font-semibold 
                            hover:bg-primary/90 transition active:scale-95">
                     Login
                 </button>
             </form>
 
             <!-- Divider -->
-            <div class="my-6 border-t border-white/10"></div>
+            <div class="my-6 border-t border-slate-200 dark:border-white/10"></div>
 
             <!-- Footer -->
-            <p class="text-center text-sm text-slate-400">
+            <p class="text-center text-sm text-slate-500 dark:text-slate-400">
                 Don’t have an account?
                 <a href="{% url 'accounts:register' %}" class="text-primary font-medium">                
                     <span class="text-primary font-medium">
@@ -108,7 +115,7 @@
 
         <!-- Back Link -->
         <div class="text-center mt-6">
-            <a href="/" class="text-slate-500 text-sm hover:text-white transition">
+            <a href="/" class="text-slate-500 text-sm hover:text-slate-900 dark:hover:text-white transition">
                 ← Back to Home
             </a>
         </div>
