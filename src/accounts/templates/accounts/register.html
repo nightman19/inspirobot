@@ -41,6 +41,7 @@
             <!-- Form -->
             <form method="post" class="space-y-4">
                 {% csrf_token %}
+                {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
 
                 <!-- Username -->
                 <div>
@@ -155,7 +156,7 @@
             <!-- Footer -->
             <p class="text-center text-sm text-slate-500 dark:text-slate-400">
                 Already have an account?
-                <a href="{% url 'login' %}">                
+                <a href="{% url 'login' %}{% if next %}?next={{ next }}{% endif %}">                
                     <span class="text-primary font-medium">
                         Login
                     </span>
