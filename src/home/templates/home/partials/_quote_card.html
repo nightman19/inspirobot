@@ -1,11 +1,12 @@
 <div id="quote-card" class="mt-4 px-4 relative">
+    {% load static %}
     <div
         class="relative flex min-h-[420px] w-full flex-col justify-between overflow-hidden rounded-3xl bg-white dark:bg-surface-dark shadow-lg shadow-slate-200/50 dark:shadow-black/20">
 
         <!-- Decorative Background -->
         <div class="absolute inset-0 z-0 opacity-40 mix-blend-overlay">
             <div class="h-full w-full bg-cover bg-center"
-                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBDFNGWKSLc2w9AllaHJriZQq11LFIA0ZDckS3qEdKygXGUVlQzEJW5RZb0IMYZ6J1KX2nCdG8CJ795sqQOoh2DRIrMM7HgO6oZyTPxpQOk-VQZ23CDrkkfehR9uY_dCK-PHn2PsjGGr32RM0Icep7-dhUmQG4FHY9DL86u5W6njOUOrBNbIgLx4BeTHRLVrqre0lgdttpXYA8FuH6JrzfmcLmVU9f8mp5RBofKRP76JHQLQoEUSuxsazp5ALzY_WoMETTywDEvTTWG');">
+                style="background-image: url('{% static 'home/images/quote-card-bg.svg' %}');">
             </div>
         </div>
 
