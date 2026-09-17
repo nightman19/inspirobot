@@ -931,6 +931,10 @@ select {
   margin-top: 0.25rem;
 }
 
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
 .mt-2 {
   margin-top: 0.5rem;
 }
@@ -1028,6 +1032,10 @@ select {
 
 .min-h-\[420px\] {
   min-height: 420px;
+}
+
+.min-h-\[520px\] {
+  min-height: 520px;
 }
 
 .min-h-screen {
@@ -1288,6 +1296,11 @@ select {
   background-color: rgb(245 158 11 / var(--tw-bg-opacity));
 }
 
+.bg-background-dark {
+  --tw-bg-opacity: 1;
+  background-color: rgb(16 29 34 / var(--tw-bg-opacity));
+}
+
 .bg-background-light {
   --tw-bg-opacity: 1;
   background-color: rgb(246 248 248 / var(--tw-bg-opacity));
@@ -1361,6 +1374,11 @@ select {
   background-color: rgb(30 41 59 / var(--tw-bg-opacity));
 }
 
+.bg-surface-dark {
+  --tw-bg-opacity: 1;
+  background-color: rgb(25 45 51 / var(--tw-bg-opacity));
+}
+
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -1403,6 +1421,10 @@ select {
 
 .bg-center {
   background-position: center;
+}
+
+.p-10 {
+  padding: 2.5rem;
 }
 
 .p-4 {
@@ -1625,6 +1647,10 @@ select {
 
 .leading-relaxed {
   line-height: 1.625;
+}
+
+.leading-snug {
+  line-height: 1.375;
 }
 
 .leading-tight {

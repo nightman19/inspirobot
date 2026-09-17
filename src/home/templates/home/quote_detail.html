@@ -1,0 +1,49 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>"{{ shared.quote_text|truncatewords:12 }}" — {{ shared.author }} | Inspirobot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Open Graph tags: reuses the same rendered card as the actual share,
+         so link previews (WhatsApp, Twitter, etc.) show exactly what was shared -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ shared.quote_text|truncatewords:12 }}">
+    <meta property="og:description" content="— {{ shared.author }} · Get more inspiration at Inspirobot">
+    <meta property="og:image" content="{{ og_image_url }}">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="{{ og_image_url }}">
+
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    {% tailwind_css %}
+</head>
+
+<body class="min-h-screen bg-background-dark font-display text-white antialiased flex items-center justify-center px-4">
+    <div class="relative w-full max-w-md rounded-3xl overflow-hidden bg-surface-dark shadow-2xl">
+        <div class="absolute inset-0 z-0 opacity-40 mix-blend-overlay">
+            <div class="h-full w-full bg-cover bg-center"
+                style="background-image: url('{% static 'home/images/quote-card-bg.svg' %}');">
+            </div>
+        </div>
+
+        <div class="relative z-10 flex flex-col justify-between min-h-[520px] p-10">
+            <div>
+                <p class="text-2xl font-bold leading-snug">{{ shared.quote_text }}</p>
+                {% if shared.author %}
+                    <p class="mt-4 text-slate-400">— {{ shared.author }}</p>
+                {% endif %}
+            </div>
+
+            <div class="mt-10">
+                <a href="{% url 'home:index' %}"
+                   class="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-3 font-semibold text-white">
+                    Get more inspiration at Inspirobot
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
