@@ -168,6 +168,7 @@
                                 }
 
                                 const shareText = `"${text}" — ${author}`;
+                                const imageCaption = "Get more inspiration at Inspirobot";
 
                                 if (navigator.canShare){
                                         try{
@@ -180,7 +181,7 @@
                                                         if (navigator.canShare({ files: [file] })){
                                                                 await navigator.share({
                                                                         title: "Inspirobot",
-                                                                        text: shareText,
+                                                                        text: imageCaption,
                                                                         url: permalinkUrl,
                                                                         files: [file],
                                                                 });
