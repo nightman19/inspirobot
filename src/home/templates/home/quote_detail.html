@@ -9,8 +9,8 @@
     <!-- Open Graph tags: reuses the same rendered card as the actual share,
          so link previews (WhatsApp, Twitter, etc.) show exactly what was shared -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="{{ shared.quote_text|truncatewords:12 }}">
-    <meta property="og:description" content="— {{ shared.author }} · Get more inspiration at Inspirobot">
+    <meta property="og:title" content="A quote by {{ shared.author|default:'Inspirobot' }}">
+    <meta property="og:description" content="Get more inspiration at Inspirobot">
     <meta property="og:image" content="{{ og_image_url }}">
     <meta property="og:url" content="{{ request.build_absolute_uri }}">
     <meta name="twitter:card" content="summary_large_image">

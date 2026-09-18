@@ -170,7 +170,7 @@
                                 const shareText = `"${text}" — ${author}`;
                                 const imageCaption = "Get more inspiration at Inspirobot";
 
-                                if (navigator.canShare){
+                                {% comment %} if (navigator.canShare){
                                         try{
                                                 const response = await fetch(`/share-card/?${params.toString()}`);
 
@@ -194,13 +194,12 @@
                                                 }
                                                 console.log("Image share unavailable, falling back to text");
                                         }
-                                }
+                                } {% endcomment %}
 
                                 try{
                                         if (navigator.share){
                                                 await navigator.share({
                                                         title: "Inspirobot",
-                                                        text: shareText,
                                                         url: permalinkUrl,
                                                 });
                                         }else {
